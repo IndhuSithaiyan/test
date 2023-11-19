@@ -1,0 +1,169 @@
+JMeter
+======
+
+What is Perfotmance Testing?
+	Performance Testing is a type of testing to ensure sofware application will perform well
+under the perticular workload
+Load testing is the simplest form of performance testing
+
+Why this Testing is necessary for every application?
+
+How does Load testing tools help us to measure the performance of Application
+
+Popular Tools available in Market for Load/Performance Testing
+
+Why Jmeter and advantages of using this?
+
+>Its Open source 
+>Cross Platform support(work on any operating system)
+>Scripting isn't essential to learn JMeter
+>JMeter GUI is more user-friendly
+
+What is JMeter?
+----------------
+JMeter is an open-source 100% pure Java application to test performance both on static and dynamic resources,
+Web dynamic applications.
+It can be used to simulate a heavy load on a server, group of servers, network or object to test its strength
+or to analyze overall performance under differend load types.
+
+
+(1)Start ===>>> (2)Send request to target system/server with different number of user/threads  
+      ===>>> (3)Get Response 
+      ===>>> (4)JMeter capture all responses 
+      ===>>> (5)JMeter gathers data to calculate statistical information
+      ===>>> (2)(contine) ===>>> End  ===>>> Report  
+
+
+What is a test plan?
+----------------------
+Chain or series of steps that Jmeter is going to execute when the run button is pressed. A complete test plan will 
+consist of one or more Thread Groups, logic controllers, sample generating controllers, listeners, timers, assertions, and configuration elements.
+	1. Adding Elements
+	2. Removing Elements
+	3. Saving the Test Plan
+	4. Running a test plan
+	5. Stopping a test (stop(immediate shutdown),shutdown(graceful shutdown))
+	6. Logging the info and errors
+
+Important Components of a Test plan:
+-------------------------------------
+	1. Thread Group
+	2. Controllers(Logic controllers, Sampler)
+	3. Listeners
+	4. Timers
+	5. Assertions
+	
+What is a Thread Group?
+-----------------------
+Thread Group is one of the most important components of a test plan. It is the beginning point of any test plan. 
+The thread group element controls the number of threads JMeter will use to execute your test. All controllers and samplers must be under a thread group.
+
+Thread Group:
+-------------
+>Beginning point of any test plan.(It's like main method in Java)
+>The thread group element controls the number of threads JMeter will use to execute your test
+>All controllers and samplers must be under a thread group
+>Other elements, e.g Listeners, may be placeded directly under the test plan so that it will be applicable for all the thread groups under the test plan
+
+Main Properties of Thread Group:
+--------------------------------
+>Set the number of threads(simulation of number of concurrent users)
+>Set the ramp-up period(time taken to threads up and running=Ramp up period/Thread). For example, If give 10 threads and ramp up
+duration as 100 seconds, then all the threads will be running in 100/10=10 seconds.
+Which means for every 10 seconds one thread will start getting executed or the second thread will execute after 10 seconds one 
+thread will start getting executed or the second thread will execute after 10 seconds of the first thread.
+>Set the number of times to execute the test
+
+Controllers
+------------
+	Logical Controllers:
+	Samplers:
+	--------
+>Tells JMeter to send requests to a server and wait for a response.
+>If multiple samplers are present in the test tree, they are processed or executed in the order they are present in the tree.
+>JMeter's samplers types:
+	>JMeter samplers include:
+	>FTP Request
+	>HTTP Request(can be used for SOAP or REST Web service also)
+	>JDBC Request
+	>Java object request
+	>JMS request
+	>Junit test request
+	>LDAP Request
+	>Mail request
+	>OS Process request
+	>TCP request
+
+Listeners: (can be added in Test plan or on Thread group level)
+
+When the Jmeter runs the test cases, there will be some sort of information will be obtained as a byproduct of the
+execution of the test cases. Those information can be accessed with the help of Listeners.
+
+Jmeter has several listeners options. Few of them are:
+	>Graph result
+	>View results tree
+	>View results table
+	>aggregate graph
+	>Response Time graph etc.
+
+Understand the reports better:
+-------------------------------
+Jmeter's report and it's terms may be unclear. That's because its based on statictics related terms. For understanding it better, 
+let's go through some basic mathematical or statistical terms first.
+
+Average: The sum of total entries/the total number.
+========
+
+Median: a value separating the higher half from the lower half of a data set. 
+=======
+for example, take the below data set.
+	{1,2,4,6,9} = > odd numbered data set.
+For odd numbered data set, the middle number is median.
+{1,2,4,6} = > even numbered data set.
+Average of middle two numbers is the median 2+4/2=3
+
+Latency:
+========
+Let's say we are sending a request to a server and in turn it will send us back the response.
+If we consider the total time took for this entire request and response is 3000ms.
+Latency is the time, when we get the very first response byte from the server.
+
+Connect time: the time taken to establish the connection with the server.
+=============
+
+Throughput: it is nothing but the number of transations per second.
+===========
+
+
+Assertions:
+===========
+Assertions -> saying in a very confident manner. In Unit testing, we have used Assertions. Assert equals,
+assert null, assert not null etc are some famous assertions.
+Similarly in Jmeter, to certify something, we can use asserions. HTML assertions, Xpath assertions, duration,
+Response assertions are few of them
+
+Response Assertions: As a result of HTTP request, we will get a response. As seen in the REST API tutorials,
+the response will have response headers, status codes, status message, body of the respons. In order to validate 
+these things, we can use Response Assertions. 
+For example, we can assert that the status code is 200 or not, response message is OK or not and so on.
+NOTE: suppose you have to check negative scenarios and validate 400 and 500 series response codes. You have to use the Ignore status option.
+Because Jmeter by default considers 4xx and 5xx series as errors.
+
+Size Assertions: We know that the response will be returned and it will have some bytes as the size.
+Assume you are a developer of Google, and you have to ensure that even with very slow internet google page should be 
+loaded without any trouble. For this, the size of the home page should be very minimal. Isn't it? To assert this 
+kind of scenario, we can use size assertion.
+
+FTP Request: For testing the file transfer protocol.
+
+For hands-on use this site: ftp.dlptest.com
+FTP User: dlpuser@dlptest.com
+Password: fLDScD4Ynth0p4OJ6bW6qCxjh
+
+To view the files you can either use FileZilla or WinSCP any web apps.
+I’m using: http://www.txftp.com/
+
+Free FTP site to upload and download the file: https://dlptest.com/ftp-test/
+
+API or Web services Sampler(HTTP request)
+This is for testing the REST/SOAP endpoints.
